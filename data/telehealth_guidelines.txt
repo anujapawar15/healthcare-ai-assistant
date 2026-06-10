@@ -1,0 +1,31 @@
+TELEHEALTH CONSULTATION GUIDELINES
+Springfield General Hospital - Digital Health Services
+
+What is Telehealth?
+Telehealth allows patients to consult with their healthcare provider through a secure video or phone connection without the need for an in-person visit. Springfield General Hospital offers telehealth services through a HIPAA-compliant patient portal platform.
+
+Who Can Use Telehealth Services?
+Telehealth services are available to established patients who have had at least one in-person visit with the facility. New patients requiring physical examination or diagnostic testing must schedule an in-person appointment first before telehealth visits are available.
+
+Conditions Appropriate for Telehealth
+Telehealth is suitable for follow-up consultations for chronic condition management including diabetes, hypertension, and asthma, medication refill reviews for non-controlled substances, mental health counseling and therapy sessions, dermatology consultations for visible skin conditions, cold flu and minor respiratory illness consultations, review of laboratory or imaging results, nutrition and lifestyle counseling, and post-surgical follow-up for stable patients.
+
+Conditions Not Suitable for Telehealth
+The following require an in-person evaluation and are not appropriate for telehealth: chest pain or suspected cardiac emergency, difficulty breathing or severe respiratory distress, severe abdominal pain, injuries requiring physical examination imaging or wound care, pediatric patients under 2 years of age for illness evaluation, and conditions requiring physical examination for accurate diagnosis.
+
+Medication Refills Through Telehealth
+Medication refill requests may be reviewed during telehealth visits for certain non-controlled medications. Patients requesting refills during a telehealth visit must have an active valid prescription and must not have had a change in symptoms or health status that would require in-person evaluation. Controlled substances generally cannot be prescribed through telehealth unless the patient meets specific federal and state regulatory criteria established by the DEA.
+
+How to Schedule a Telehealth Appointment
+Patients should log into the patient portal, select Schedule Appointment and choose Telehealth Visit, select their provider and preferred date and time. A secure video link will be sent 30 minutes before the appointment. Telehealth appointments can also be scheduled by calling 555-000-1234.
+
+Technical Requirements
+Patients need a smartphone tablet or computer with a camera and microphone, a stable internet connection with a minimum of 2 Mbps recommended, an updated web browser such as Chrome Firefox Safari or Edge, and the Springfield General patient portal app which is optional but recommended.
+
+Telehealth Appointment Costs
+Telehealth visits are covered by most major insurance plans. Co-pays and deductibles apply as with in-person visits. Uninsured patients may qualify for reduced-cost telehealth services through the hospital Financial Assistance Program.
+
+Privacy and Security
+All telehealth sessions are conducted through the HIPAA-compliant platform. Sessions are not recorded. Patients should ensure they are in a private secure location during their consultation to protect their health information.
+
+For technical support call 555-000-6000 or email telehealth@springfieldgeneral.org.

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Healthcare AI Assistant</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a6bbc, #0d4a8a);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .header-icon { font-size: 28px; }
+    .header-text h1 { font-size: 18px; font-weight: 600; }
+    .header-text p  { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+    .status-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #4cde80; margin-left: auto;
+      box-shadow: 0 0 6px #4cde80;
+    }
+
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .welcome {
+      text-align: center;
+      color: #6b7c93;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .welcome .welcome-icon { font-size: 56px; margin-bottom: 12px; }
+    .welcome h2 { font-size: 20px; color: #1a6bbc; margin-bottom: 8px; }
+    .welcome p  { font-size: 14px; line-height: 1.6; max-width: 400px; margin: 0 auto 20px; }
+    .suggestions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .suggestion-btn {
+      background: white; border: 1px solid #c8d8ea; border-radius: 20px;
+      padding: 8px 14px; font-size: 13px; color: #1a6bbc;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .suggestion-btn:hover { background: #1a6bbc; color: white; border-color: #1a6bbc; }
+
+    .message { display: flex; gap: 10px; max-width: 80%; }
+    .message.user { align-self: flex-end; flex-direction: row-reverse; }
+    .message.bot  { align-self: flex-start; }
+
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .bot .avatar  { background: #1a6bbc; }
+    .user .avatar { background: #e0eaf5; }
+
+    .bubble {
+      padding: 12px 16px; border-radius: 18px;
+      font-size: 14px; line-height: 1.6; max-width: 100%;
+    }
+    .bot .bubble {
+      background: white; color: #1a2733;
+      border-top-left-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .user .bubble {
+      background: #1a6bbc; color: white;
+      border-top-right-radius: 4px;
+    }
+
+    .sources {
+      margin-top: 10px; padding: 8px 12px;
+      background: #f0f7ff; border-left: 3px solid #1a6bbc;
+      border-radius: 4px; font-size: 12px; color: #4a6080;
+    }
+    .sources strong { color: #1a6bbc; display: block; margin-bottom: 4px; }
+    .source-tag {
+      display: inline-block; background: #ddeeff; color: #1a6bbc;
+      border-radius: 10px; padding: 2px 8px; margin: 2px 3px 2px 0; font-size: 11px;
+    }
+
+    .typing { display: flex; gap: 5px; align-items: center; padding: 14px 16px; }
+    .typing span {
+      width: 8px; height: 8px; border-radius: 50%; background: #aac4df;
+      animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+
+    .input-bar {
+      background: white; border-top: 1px solid #dde6ef;
+      padding: 14px 16px; display: flex; gap: 10px; align-items: center;
+    }
+    .input-bar input {
+      flex: 1; border: 1px solid #c8d8ea; border-radius: 24px;
+      padding: 10px 18px; font-size: 14px; outline: none; color: #1a2733;
+      transition: border-color 0.2s;
+    }
+    .input-bar input:focus { border-color: #1a6bbc; }
+    .input-bar input::placeholder { color: #9bb0c4; }
+
+    .send-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #1a6bbc; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .send-btn:hover    { background: #0d4a8a; }
+    .send-btn:disabled { background: #aac4df; cursor: not-allowed; }
+    .send-btn svg { width: 20px; height: 20px; fill: white; }
+
+    .disclaimer {
+      text-align: center; font-size: 11px; color: #9bb0c4;
+      padding: 6px 16px 10px; background: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-icon">🏥</div>
+  <div class="header-text">
+    <h1>Healthcare AI Assistant</h1>
+    <p>Powered by RAG — Answers from verified documents</p>
+  </div>
+  <div class="status-dot" id="statusDot"></div>
+</div>
+
+<div class="chat-area" id="chatArea">
+  <div class="welcome" id="welcomeMsg">
+    <div class="welcome-icon">💊</div>
+    <h2>How can I help you today?</h2>
+    <p>Ask me anything about our healthcare services, policies, telehealth guidelines, insurance, or medications.</p>
+    <div class="suggestions">
+      <button class="suggestion-btn" onclick="ask('What are the telehealth guidelines?')">📱 Telehealth guidelines</button>
+      <button class="suggestion-btn" onclick="ask('How do I refill my medication?')">💊 Medication refill</button>
+      <button class="suggestion-btn" onclick="ask('What does my insurance cover?')">📋 Insurance coverage</button>
+      <button class="suggestion-btn" onclick="ask('How do I book an appointment?')">📅 Book appointment</button>
+    </div>
+  </div>
+</div>
+
+<div class="input-bar">
+  <input type="text" id="questionInput" placeholder="Type your healthcare question..."
+         onkeydown="if(event.key==='Enter') sendMessage()" />
+  <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+    <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+  </button>
+</div>
+<div class="disclaimer">For informational purposes only. Not a substitute for professional medical advice.</div>
+
+<script>
+  const API = 'http://localhost:8000';
+
+  async function checkHealth() {
+    try {
+      const res = await fetch(`${API}/health`);
+      if (res.ok) {
+        document.getElementById('statusDot').style.background = '#4cde80';
+        await fetch(`${API}/ingest`, { method: 'POST' });
+      }
+    } catch {
+      document.getElementById('statusDot').style.background = '#ff5c5c';
+    }
+  }
+
+  function ask(question) {
+    document.getElementById('questionInput').value = question;
+    sendMessage();
+  }
+
+  function appendMessage(role, text, sources) {
+    const welcome = document.getElementById('welcomeMsg');
+    if (welcome) welcome.remove();
+
+    const chatArea = document.getElementById('chatArea');
+    const msg = document.createElement('div');
+    msg.className = `message ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = role === 'user' ? '👤' : '🏥';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.style.whiteSpace = 'pre-wrap';
+    bubble.textContent = text;
+
+    if (sources && sources.length > 0) {
+      const srcDiv = document.createElement('div');
+      srcDiv.className = 'sources';
+      const uniqueDocs = [...new Set(sources.map(s => s.document))];
+      srcDiv.innerHTML = `<strong>📄 Sources</strong>` +
+        uniqueDocs.map(d => `<span class="source-tag">${d.replace('.txt','')}</span>`).join('');
+      bubble.appendChild(srcDiv);
+    }
+
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatArea.appendChild(msg);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function showTyping() {
+    const chatArea = document.getElementById('chatArea');
+    const msg = document.createElement('div');
+    msg.className = 'message bot';
+    msg.id = 'typingMsg';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = '🏥';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatArea.appendChild(msg);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('typingMsg');
+    if (t) t.remove();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('questionInput');
+    const btn   = document.getElementById('sendBtn');
+    const question = input.value.trim();
+    if (!question) return;
+
+    input.value = '';
+    btn.disabled = true;
+    appendMessage('user', question);
+    showTyping();
+
+    try {
+      const res = await fetch(`${API}/ask`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      const data = await res.json();
+      removeTyping();
+      if (res.ok) {
+        appendMessage('bot', data.answer, data.sources);
+      } else {
+        appendMessage('bot', '⚠️ ' + (data.detail || 'Something went wrong. Please try again.'));
+      }
+    } catch {
+      removeTyping();
+      appendMessage('bot', '⚠️ Could not reach the server. Make sure it is running on port 8000.');
+    } finally {
+      btn.disabled = false;
+      input.focus();
+    }
+  }
+
+  checkHealth();
+</script>
+</body>
+</html>

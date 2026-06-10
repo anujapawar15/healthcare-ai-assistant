@@ -1,0 +1,26 @@
+HIPAA PRIVACY AND SECURITY GUIDELINES
+Springfield General Hospital - Compliance Department
+
+What is HIPAA?
+HIPAA stands for the Health Insurance Portability and Accountability Act. It is a federal law that protects the privacy and security of patients health information known as Protected Health Information or PHI. All patients at Springfield General Hospital are protected under HIPAA regulations.
+
+What is Protected Health Information?
+Protected Health Information includes any individually identifiable health information such as patient name, address, birth date, and Social Security number, medical record numbers and health plan beneficiary numbers, diagnoses, treatment information, and medical history, lab results, prescriptions, and imaging reports, and any information that could be used to identify a specific patient.
+
+Your Rights as a Patient Under HIPAA
+Patients have the right to access and review their medical records within 30 days of request, request corrections to health information if believed to be inaccurate, receive a written notice of privacy practices, request restrictions on how information is used or disclosed, receive an accounting of disclosures of health information, and file a complaint if privacy rights have been violated.
+
+How We Use Your Health Information
+Springfield General Hospital may use patient PHI to provide and coordinate medical care and treatment, process billing and insurance claims, conduct quality improvement and safety activities, and comply with legal and regulatory requirements. The hospital will not sell health information to third parties and will not use information for marketing purposes without written authorization from the patient.
+
+Who Can Access Your Health Information?
+Health information may be shared with healthcare providers directly involved in treatment, insurance companies for billing and reimbursement purposes, public health authorities as required by law, law enforcement under specific legal circumstances, and family members or caregivers only with written consent from the patient.
+
+How to Access or Amend Your Records
+Submit a written request to the Medical Records Department in person at the Medical Records Office on the first floor, by mail to 100 Health Way Springfield, or by email to medicalrecords@springfieldgeneral.org. Processing time is up to 30 days. Certain records may require an administrative fee.
+
+Filing a HIPAA Complaint
+If you believe your privacy rights have been violated contact the Privacy Officer at 555-000-4000 or privacy@springfieldgeneral.org. Patients may also file a complaint with the U.S. Department of Health and Human Services Office for Civil Rights without fear of retaliation.
+
+Data Security Measures
+Springfield General Hospital uses encryption for electronic health records, access controls to limit who can view patient data, audit logs to track who accessed records, and staff training on HIPAA compliance. All business associates who handle PHI are required to sign Business Associate Agreements.

@@ -28,3 +28,7 @@ test_body2.json
 # IDE
 .vscode/
 .idea/
+
+# Personal files
+README_FOR_ME.docx
+generate_readme.py
